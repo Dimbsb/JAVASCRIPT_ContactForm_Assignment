@@ -1,5 +1,5 @@
 document.getElementById('ContactForm').addEventListener('submit', function(event) {
-    event.preventDefault(); 
+    event.preventDefault();
 
     const name = document.querySelector('input[name="name"]').value.trim();
     const email = document.querySelector('input[name="email"]').value.trim();
@@ -10,32 +10,27 @@ document.getElementById('ContactForm').addEventListener('submit', function(event
     const phonePattern = /^\d+$/;
 
     if (!name) {
-        alert("Παρακαλώ εισάγετε το Ονοματεπώνυμό σας.");
+        alert("Please enter your name.");
         return;
     }
 
     if (!email) {
-        alert("Παρακαλώ εισάγετε τη διεύθυνση email σας.");
+        alert("Please enter your email address.");
         return;
     }
 
     if (!emailPattern.test(email)) {
-        alert("Παρακαλώ εισάγετε μια έγκυρη διεύθυνση email.");
+        alert("Please enter a valid email address.");
         return;
     }
 
-    if (!phone) {
-        alert("Παρακαλώ εισάγετε τον αριθμό τηλεφώνου σας.");
-        return;
-    }
-
-    if (!phonePattern.test(phone)) {
-        alert("Παρακαλώ εισάγετε έναν έγκυρο αριθμό τηλεφώνου.");
+    if (phone && !phonePattern.test(phone)) {
+        alert("Please enter a valid phone number.");
         return;
     }
 
     if (!message) {
-        alert("Παρακαλώ εισάγετε το μήνυμά σας.");
+        alert("Please enter your message.");
         return;
     }
 
@@ -44,7 +39,7 @@ document.getElementById('ContactForm').addEventListener('submit', function(event
     document.getElementById("confirmPhone").textContent = phone;
     document.getElementById("confirmMessage").textContent = message;
     
-    document.getElementById("confirmationModal").style.display = "flex"; 
+    document.getElementById("confirmationModal").style.display = "flex";
 
     document.getElementById("confirmSend").addEventListener("click", function() {
         const mailtoLink = `mailto:${email}?subject=Contact%20Form%20Submission&body=Name:%20${encodeURIComponent(name)}%0AEmail:%20${encodeURIComponent(email)}%0APhone:%20${encodeURIComponent(phone)}%0AMessage:%20${encodeURIComponent(message)}`;
